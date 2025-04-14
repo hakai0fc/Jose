@@ -130,3 +130,17 @@ Vida3Tab:AddToggle({
         AutoHealth3(0.0000000000000000000001)
     end
 })
+local InfiniteYieldTab = Window:MakeTab({
+    Name = "FUNÇÕES A+",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+InfiniteYieldTab:AddSection({ Name = "FUNÇÕES A+" })
+
+InfiniteYieldTab:AddButton({
+    Name = "InfiniteYield",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/hakaiofc/EdgeIYinfiniteyield/main/mastersource'))()
+    end
+})
