@@ -2,7 +2,7 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/hakaiofc/Base/main/HUBORION')))()
 
 --Main Script inicio do hub
-local Window = OrionLib:MakeWindow({Name = "NOME DO HUB", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = false})
+local Window = OrionLib:MakeWindow({Name = "Franklin Farm", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = false})
 -- ANTI AFK
 pcall(function()
     local VirtualUser = game:service'VirtualUser'
@@ -18,6 +18,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 --Valor nome da função
 _G.AutoHealth = True --nomes das funções, precisa para serem ativadas
+_G.AutoDumbell = True
 _G.AutoHealth2 = True
 _G.AutoHealth3 = True 
 
@@ -25,55 +26,55 @@ _G.AutoHealth3 = True
 -- Função AutoHealth
 function AutoHealth()
     task.spawn(function()
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        if not lutero then return end
-        local args = {"GiveHealthCuzPro", 2, 1}
-
-        repeat
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            task.wait(0.005) --final da base
-        until not _G.AutoHealth --final da base
+        local args = {
+            [1] = "GiveHealthCuzPro",
+            [2] = 3,
+            [3] = 1
+        }
+        
+        
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
     end) --final da base
 end --final da base
 --primeira função do hub foi criada
+--função autodumbell
+function AutoDumbell()
+    task.spawn(function()
+        local args = {
+            [1] = 1
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Dumbell.Event:FireServer(unpack(args))
+    end) --final da base
+end --final da base
 -- Função AutoHealth2
 function AutoHealth2()
     task.spawn(function()
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        if not lutero then return end
-        local args = {"GiveHealthCuzPro", 2, 1}
-
-        repeat
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            task.wait(0.005) --final da base
+        local args = {
+            [1] = "GiveHealthCuzPro",
+            [2] = 3,
+            [3] = 1
+        }
+        
+        
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
         until not _G.AutoHealth2 --final da base
     end) --final da base
 end --final da base
 -- Função AutoHealth3
 function AutoHealth3()
     task.spawn(function()
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
-        if not lutero then return end
-        local args = {"GiveHealthCuzPro", 2, 1}
-
-        repeat
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            lutero:FireServer(unpack(args))
-            task.wait(0.005) --final da base
+        local args = {
+            [1] = "GiveHealthCuzPro",
+            [2] = 3,
+            [3] = 1
+        }
+        
+        
+        local replicatedStorage = game:GetService("ReplicatedStorage")
+        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
         until not _G.AutoHealth3 --final da base
     end) --final da base
 end --final da base
@@ -92,6 +93,14 @@ FarmTab:AddToggle({ --manter essa sequiencia e base
     Callback = function(Value) --manter essa sequiencia e base
         _G.AutoHealth = Value --manter essa sequiencia e base porem tem que mudar nome para alterar a função
         AutoHealth(0.0000000000000000000001)-- tempo de execução da função --manter essa sequiencia e base
+    end --manter essa sequiencia e base
+})--manter essa sequiencia e base
+FarmTab:AddToggle({ --manter essa sequiencia e base
+    Name = "Auto-Dumbell",--nome da opção que vai ser ativada 
+    Default = false, --manter essa sequiencia e base
+    Callback = function(Value) --manter essa sequiencia e base
+        _G.AutoDumbell = Value --manter essa sequiencia e base porem tem que mudar nome para alterar a função
+        AutoDumbell(0.0000000000000000000001)-- tempo de execução da função --manter essa sequiencia e base
     end --manter essa sequiencia e base
 })--manter essa sequiencia e base
 --vc pode ver que entre main menu 1 e 2 tem algumas diferenças, Autotab menu 2 ,e FarmTab menu 1
