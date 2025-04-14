@@ -1,1 +1,132 @@
-hub
+--Load base do hub
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/hakaiofc/Base/main/HUBORION')))()
+
+--Main Script inicio do hub
+local Window = OrionLib:MakeWindow({Name = "NOME DO HUB", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = false})
+-- ANTI AFK
+pcall(function()
+    local VirtualUser = game:service'VirtualUser'
+    game:service'Players'.LocalPlayer.Idled:connect(function()
+        VirtualUser:CaptureController()
+        VirtualUser:ClickButton2(Vector2.new())
+    end)
+end)
+-- GLOBALS
+local LP = game.Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+--final do anti afk
+
+--Valor nome da função
+_G.AutoHealth = True --nomes das funções, precisa para serem ativadas
+_G.AutoHealth2 = True
+_G.AutoHealth3 = True 
+
+--Função vamos criar a primeira função
+-- Função AutoHealth
+function AutoHealth()
+    task.spawn(function()
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        if not lutero then return end
+        local args = {"GiveHealthCuzPro", 2, 1}
+
+        repeat
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            task.wait(0.005) --final da base
+        until not _G.AutoHealth --final da base
+    end) --final da base
+end --final da base
+--primeira função do hub foi criada
+-- Função AutoHealth2
+function AutoHealth2()
+    task.spawn(function()
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        if not lutero then return end
+        local args = {"GiveHealthCuzPro", 2, 1}
+
+        repeat
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            task.wait(0.005) --final da base
+        until not _G.AutoHealth2 --final da base
+    end) --final da base
+end --final da base
+-- Função AutoHealth3
+function AutoHealth3()
+    task.spawn(function()
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        local lutero = ReplicatedStorage:FindFirstChild("Lutero")
+        if not lutero then return end
+        local args = {"GiveHealthCuzPro", 2, 1}
+
+        repeat
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            lutero:FireServer(unpack(args))
+            task.wait(0.005) --final da base
+        until not _G.AutoHealth3 --final da base
+    end) --final da base
+end --final da base
+--Main isso aqui é o que vai criar a aba do hub , as guias do hub e o nome do hub
+local FarmTab= Window:MakeTab({ --manter essa sequiencia e base
+    Name = "Aba", --manter essa sequiencia e base, pode alterar nome no " "
+    Icon = "rbxassetid://4483345998", --manter essa sequiencia e base
+    PremiumOnly = false --manter essa sequiencia e base
+}) --manter essa sequiencia e base 
+local Section = FarmTab:AddSection({--manter essa sequiencia e base
+    Name = "Pos aba" --manter essa sequiencia e base pode alterar nome no " "
+}) --manter essa sequiencia e base
+FarmTab:AddToggle({ --manter essa sequiencia e base
+    Name = "Auto-Health",--nome da opção que vai ser ativada 
+    Default = false, --manter essa sequiencia e base
+    Callback = function(Value) --manter essa sequiencia e base
+        _G.AutoHealth = Value --manter essa sequiencia e base porem tem que mudar nome para alterar a função
+        AutoHealth(0.0000000000000000000001)-- tempo de execução da função --manter essa sequiencia e base
+    end --manter essa sequiencia e base
+})--manter essa sequiencia e base
+--vc pode ver que entre main menu 1 e 2 tem algumas diferenças, Autotab menu 2 ,e FarmTab menu 1
+--esses nomes são diferenciados para separar as funções e as guias do hub
+--Main menu 2
+local AutoTab= Window:MakeTab({
+    Name = "Aba2",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local Section = AutoTab:AddSection({
+    Name = "Pos aba2"
+})
+AutoTab:AddToggle({
+    Name = "Auto-Health2",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoHealth2 = Value
+        AutoHealth2(0.0000000000000000000001)
+    end
+})
+--Main
+local Vida3Tab= Window:MakeTab({
+    Name = "Aba3",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local Section = Vida3Tab:AddSection({
+    Name = "Pos aba3"
+})
+Vida3Tab:AddToggle({
+    Name = "Auto-Health3",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoHealth3 = Value
+        AutoHealth3(0.0000000000000000000001)
+    end
+})
