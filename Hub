@@ -1,8 +1,15 @@
---Load base do hub
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/hakaiofc/Base/main/HUBORION')))()
+-- Load base do hub
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/hakaiofc/Base/main/HUBORION'))()
 
---Main Script inicio do hub
-local Window = OrionLib:MakeWindow({Name = "Franklin Farm", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = false})
+-- Janela principal do hub
+local Window = OrionLib:MakeWindow({
+    Name = "Franklin Farm",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest",
+    IntroEnabled = false
+})
+
 -- ANTI AFK
 pcall(function()
     local VirtualUser = game:service'VirtualUser'
@@ -11,26 +18,70 @@ pcall(function()
         VirtualUser:ClickButton2(Vector2.new())
     end)
 end)
+
 -- GLOBALS
 local LP = game.Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
---final do anti afk
 
---Valor nome da função
-_G.AutoHealth = True --nomes das funções, precisa para serem ativadas
-_G.AutoDumbell = True
-_G.AutoHealth2 = True
-_G.AutoHealth3 = True 
+-- Ativadores das funções
+_G.AutoHealth = true
+_G.AutoDumbell = true
+_G.AutoHealth2 = true
+_G.AutoHealth3 = true
 
---Função vamos criar a primeira função
 -- Função AutoHealth
 function AutoHealth()
     task.spawn(function()
-        local LP = game.Players.LocalPlayer
+        while _G.AutoHealth do
+            local args = {
+                [1] = "GiveHealthCuzPro",
+                [2] = 3,
+                [3] = 1
+            }
 
-_G.AutoDumbell = true -- Ativa o loop (você pode mudar isso para false quando quiser parar)
+            local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
+            remoteEvent:FireServer(unpack(args))
+            task.wait(0.1)
+        end
+    end)
+end
 
-for i = 1, 1 do
+-- Função AutoHealth2
+function AutoHealth2()
+    task.spawn(function()
+        while _G.AutoHealth2 do
+            local args = {
+                [1] = "GiveHealthCuzPro",
+                [2] = 3,
+                [3] = 1
+            }
+
+            local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
+            remoteEvent:FireServer(unpack(args))
+            task.wait(0.1)
+        end
+    end)
+end
+
+-- Função AutoHealth3
+function AutoHealth3()
+    task.spawn(function()
+        while _G.AutoHealth3 do
+            local args = {
+                [1] = "GiveHealthCuzPro",
+                [2] = 3,
+                [3] = 1
+            }
+
+            local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
+            remoteEvent:FireServer(unpack(args))
+            task.wait(0.1)
+        end
+    end)
+end
+
+-- Função DumbellOP
+function DumbellOP()
     task.spawn(function()
         while _G.AutoDumbell do
             local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
@@ -44,104 +95,86 @@ for i = 1, 1 do
         end
     end)
 end
--- Função AutoHealth2
-function AutoHealth2()
-    task.spawn(function()
-        local args = {
-            [1] = "GiveHealthCuzPro",
-            [2] = 3,
-            [3] = 1
-        }
-        
-        
-        local replicatedStorage = game:GetService("ReplicatedStorage")
-        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
-        until not _G.AutoHealth2 --final da base
-    end) --final da base
-end --final da base
--- Função AutoHealth3
-function AutoHealth3()
-    task.spawn(function()
-        local args = {
-            [1] = "GiveHealthCuzPro",
-            [2] = 3,
-            [3] = 1
-        }
-        
-        
-        local replicatedStorage = game:GetService("ReplicatedStorage")
-        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
-        until not _G.AutoHealth3 --final da base
-    end) --final da base
-end --final da base
---Main isso aqui é o que vai criar a aba do hub , as guias do hub e o nome do hub
-local FarmTab= Window:MakeTab({ --manter essa sequiencia e base
-    Name = "Aba", --manter essa sequiencia e base, pode alterar nome no " "
-    Icon = "rbxassetid://4483345998", --manter essa sequiencia e base
-    PremiumOnly = false --manter essa sequiencia e base
-}) --manter essa sequiencia e base 
-local Section = FarmTab:AddSection({--manter essa sequiencia e base
-    Name = "Pos aba" --manter essa sequiencia e base pode alterar nome no " "
-}) --manter essa sequiencia e base
-FarmTab:AddToggle({ --manter essa sequiencia e base
-    Name = "Auto-Health",--nome da opção que vai ser ativada 
-    Default = false, --manter essa sequiencia e base
-    Callback = function(Value) --manter essa sequiencia e base
-        _G.AutoHealth = Value --manter essa sequiencia e base porem tem que mudar nome para alterar a função
-        AutoHealth(0.0000000000000000000001)-- tempo de execução da função --manter essa sequiencia e base
-    end --manter essa sequiencia e base
-})--manter essa sequiencia e base
-FarmTab:AddToggle({ --manter essa sequiencia e base
-    Name = "Auto-Dumbell",--nome da opção que vai ser ativada 
-    Default = false, --manter essa sequiencia e base
-    Callback = function(Value) --manter essa sequiencia e base
-        _G.AutoDumbell = Value --manter essa sequiencia e base porem tem que mudar nome para alterar a função
-        AutoDumbell(0.0000000000000000000001)-- tempo de execução da função --manter essa sequiencia e base
-    end --manter essa sequiencia e base
-})--manter essa sequiencia e base
---vc pode ver que entre main menu 1 e 2 tem algumas diferenças, Autotab menu 2 ,e FarmTab menu 1
---esses nomes são diferenciados para separar as funções e as guias do hub
---Main menu 2
-local AutoTab= Window:MakeTab({
+
+-- Aba 1
+local FarmTab = Window:MakeTab({
+    Name = "Aba",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+FarmTab:AddSection({
+    Name = "Pos aba"
+})
+
+FarmTab:AddToggle({
+    Name = "Auto-Health",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoHealth = Value
+        if Value then AutoHealth() end
+    end
+})
+
+FarmTab:AddToggle({
+    Name = "Auto-Dumbell",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoDumbell = Value
+        if Value then DumbellOP() end
+    end
+})
+
+-- Aba 2
+local AutoTab = Window:MakeTab({
     Name = "Aba2",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-local Section = AutoTab:AddSection({
+
+AutoTab:AddSection({
     Name = "Pos aba2"
 })
+
 AutoTab:AddToggle({
     Name = "Auto-Health2",
     Default = false,
     Callback = function(Value)
         _G.AutoHealth2 = Value
-        AutoHealth2(0.0000000000000000000001)
+        if Value then AutoHealth2() end
     end
 })
---Main
-local Vida3Tab= Window:MakeTab({
+
+-- Aba 3
+local Vida3Tab = Window:MakeTab({
     Name = "Aba3",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
-local Section = Vida3Tab:AddSection({
+
+Vida3Tab:AddSection({
     Name = "Pos aba3"
 })
+
 Vida3Tab:AddToggle({
     Name = "Auto-Health3",
     Default = false,
     Callback = function(Value)
         _G.AutoHealth3 = Value
-        AutoHealth3(0.0000000000000000000001)
+        if Value then AutoHealth3() end
     end
 })
+
+-- Aba de Funções Extras
 local InfiniteYieldTab = Window:MakeTab({
     Name = "FUNÇÕES A+",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-InfiniteYieldTab:AddSection({ Name = "FUNÇÕES A+" })
+InfiniteYieldTab:AddSection({
+    Name = "FUNÇÕES A+"
+})
 
 InfiniteYieldTab:AddButton({
     Name = "InfiniteYield",
