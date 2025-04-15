@@ -23,11 +23,10 @@ end)
 local LP = game.Players.LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Ativadores das funções
-_G.AutoHealth = true
-_G.AutoDumbell = true
-_G.AutoStamina = true
-_G.AutoStamina2 = true
+_G.AutoHealth = false
+_G.AutoDumbell = false
+_G.AutoStamina = false
+_G.AutoStamina2 = false
 
 -- Função AutoHealth
 function AutoHealth()
@@ -38,7 +37,6 @@ function AutoHealth()
                 [2] = 3,
                 [3] = 1
             }
-
             local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
             remoteEvent:FireServer(unpack(args))
             task.wait(0.1)
@@ -49,21 +47,22 @@ end
 -- Função AutoStamina
 function AutoStamina()
     task.spawn(function()
-        while _G.Stamina do
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+        while _G.AutoStamina do
+            for _ = 1, 3 do
+                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+            end
             task.wait(0.1)
         end
     end)
 end
+
 -- Função AutoStamina2
 function AutoStamina2()
     task.spawn(function()
-        while _G.Stamina do
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
-    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+        while _G.AutoStamina2 do
+            for _ = 1, 3 do
+                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+            end
             task.wait(0.1)
         end
     end)
@@ -92,9 +91,7 @@ local FarmTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-FarmTab:AddSection({
-    Name = "Pos aba"
-})
+FarmTab:AddSection({ Name = "Pos aba" })
 
 FarmTab:AddToggle({
     Name = "Auto-Health",
@@ -121,18 +118,16 @@ local AutoTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-AutoTab:AddSection({
-    Name = "Pos aba2"
-})
+AutoTab:AddSection({ Name = "Pos aba2" })
 
 AutoTab:AddToggle({
-        Name = "Auto-Stamina",
-        Default = false,
-        Callback = function(Value)
-            _G.AutoStamina = Value
-            AutoStamina(0.0000000000000000000001)
-        end
-    })
+    Name = "Auto-Stamina",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoStamina = Value
+        if Value then AutoStamina() end
+    end
+})
 
 -- Aba 3
 local Vida3Tab = Window:MakeTab({
@@ -141,16 +136,14 @@ local Vida3Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Vida3Tab:AddSection({
-    Name = "Pos aba3"
-})
+Vida3Tab:AddSection({ Name = "Pos aba3" })
 
 Vida3Tab:AddToggle({
     Name = "Auto-Stamina2",
     Default = false,
     Callback = function(Value)
         _G.AutoStamina2 = Value
-        AutoStamina2(0.0000000000000000000001)
+        if Value then AutoStamina2() end
     end
 })
 
@@ -161,9 +154,7 @@ local InfiniteYieldTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-InfiniteYieldTab:AddSection({
-    Name = "FUNÇÕES A+"
-})
+InfiniteYieldTab:AddSection({ Name = "FUNÇÕES A+" })
 
 InfiniteYieldTab:AddButton({
     Name = "InfiniteYield",
