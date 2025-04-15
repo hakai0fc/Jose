@@ -26,28 +26,24 @@ _G.AutoHealth3 = True
 -- Função AutoHealth
 function AutoHealth()
     task.spawn(function()
-        local args = {
-            [1] = "GiveHealthCuzPro",
-            [2] = 3,
-            [3] = 1
-        }
-        
-        
-        local replicatedStorage = game:GetService("ReplicatedStorage")
-        local remoteEvent = replicatedStorage:WaitForChild("Lutero")
-    end) --final da base
-end --final da base
---primeira função do hub foi criada
---função autodumbell
-function AutoDumbell()
+        local LP = game.Players.LocalPlayer
+
+_G.AutoDumbell = true -- Ativa o loop (você pode mudar isso para false quando quiser parar)
+
+for i = 1, 1 do
     task.spawn(function()
-        local args = {
-            [1] = 1
-        }
-        
-        game:GetService("Players").LocalPlayer.Character.Dumbell.Event:FireServer(unpack(args))
-    end) --final da base
-end --final da base
+        while _G.AutoDumbell do
+            local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
+            if dumbell then
+                local dumbellEvent = dumbell:FindFirstChild("Event")
+                if dumbellEvent then
+                    dumbellEvent:FireServer()
+                end
+            end
+            task.wait(0.0005)
+        end
+    end)
+end
 -- Função AutoHealth2
 function AutoHealth2()
     task.spawn(function()
