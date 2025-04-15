@@ -26,8 +26,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Ativadores das funções
 _G.AutoHealth = true
 _G.AutoDumbell = true
-_G.AutoHealth2 = true
-_G.AutoHealth3 = true
+_G.AutoStamina = true
+_G.AutoStamina2 = true
 
 -- Função AutoHealth
 function AutoHealth()
@@ -46,35 +46,24 @@ function AutoHealth()
     end)
 end
 
--- Função AutoHealth2
-function AutoHealth2()
+-- Função AutoStamina
+function AutoStamina()
     task.spawn(function()
-        while _G.AutoHealth2 do
-            local args = {
-                [1] = "GiveHealthCuzPro",
-                [2] = 3,
-                [3] = 1
-            }
-
-            local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
-            remoteEvent:FireServer(unpack(args))
+        while _G.Stamina do
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
             task.wait(0.1)
         end
     end)
 end
-
--- Função AutoHealth3
-function AutoHealth3()
+-- Função AutoStamina2
+function AutoStamina2()
     task.spawn(function()
-        while _G.AutoHealth3 do
-            local args = {
-                [1] = "GiveHealthCuzPro",
-                [2] = 3,
-                [3] = 1
-            }
-
-            local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
-            remoteEvent:FireServer(unpack(args))
+        while _G.Stamina do
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
+    game:GetService("ReplicatedStorage").AddStaminaEvent:FireServer(250) -- Aumenta a Durabilidade
             task.wait(0.1)
         end
     end)
@@ -98,7 +87,7 @@ end
 
 -- Aba 1
 local FarmTab = Window:MakeTab({
-    Name = "Aba",
+    Name = "FARME",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -137,13 +126,13 @@ AutoTab:AddSection({
 })
 
 AutoTab:AddToggle({
-    Name = "Auto-Health2",
-    Default = false,
-    Callback = function(Value)
-        _G.AutoHealth2 = Value
-        if Value then AutoHealth2() end
-    end
-})
+        Name = "Auto-Stamina",
+        Default = false,
+        Callback = function(Value)
+            _G.AutoStamina = Value
+            AutoStamina(0.0000000000000000000001)
+        end
+    })
 
 -- Aba 3
 local Vida3Tab = Window:MakeTab({
@@ -157,11 +146,11 @@ Vida3Tab:AddSection({
 })
 
 Vida3Tab:AddToggle({
-    Name = "Auto-Health3",
+    Name = "Auto-Stamina2",
     Default = false,
     Callback = function(Value)
-        _G.AutoHealth3 = Value
-        if Value then AutoHealth3() end
+        _G.AutoStamina2 = Value
+        AutoStamina2(0.0000000000000000000001)
     end
 })
 
