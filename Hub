@@ -27,6 +27,7 @@ _G.AutoHealth = false
 _G.AutoDumbell = false
 _G.AutoStamina = false
 _G.AutoStamina2 = false
+_G.AutoStamina3 = false
 
 -- Função AutoHealth
 function AutoHealth()
@@ -84,6 +85,18 @@ function DumbellOP()
     end)
 end
 
+-- Função AutoStamina3
+function AutoStamina3()
+    task.spawn(function()
+        while _G.AutoStamina3 do
+            for _ = 1, 3 do
+                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+            end
+            task.wait(0.1)
+        end
+    end)
+end
+
 -- Aba 1
 local FarmTab = Window:MakeTab({
     Name = "FARME",
@@ -129,21 +142,21 @@ AutoTab:AddToggle({
     end
 })
 
--- Aba 3
-local Vida3Tab = Window:MakeTab({
-    Name = "Aba3",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-Vida3Tab:AddSection({ Name = "Pos aba3" })
-
-Vida3Tab:AddToggle({
+AutoTab:AddToggle({
     Name = "Auto-Stamina2",
     Default = false,
     Callback = function(Value)
         _G.AutoStamina2 = Value
         if Value then AutoStamina2() end
+    end
+})
+
+AutoTab:AddToggle({
+    Name = "Auto-Stamina3",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoStamina3 = Value
+        if Value then AutoStamina3() end
     end
 })
 
