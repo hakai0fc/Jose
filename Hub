@@ -49,7 +49,7 @@ end
 function AutoStamina()
     task.spawn(function()
         while _G.AutoStamina do
-            for _ = 1, 3 do
+            for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
             end
             task.wait(0.1)
@@ -61,7 +61,7 @@ end
 function AutoStamina2()
     task.spawn(function()
         while _G.AutoStamina2 do
-            for _ = 1, 3 do
+            for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
             end
             task.wait(0.1)
@@ -89,7 +89,7 @@ end
 function AutoStamina3()
     task.spawn(function()
         while _G.AutoStamina3 do
-            for _ = 1, 3 do
+            for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
             end
             task.wait(0.1)
@@ -126,7 +126,7 @@ FarmTab:AddToggle({
 
 -- Aba 2
 local AutoTab = Window:MakeTab({
-    Name = "Aba2",
+    Name = "StaminaOP",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
