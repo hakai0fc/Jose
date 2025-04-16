@@ -12,8 +12,8 @@ local Window = OrionLib:MakeWindow({
 
 -- ANTI AFK
 pcall(function()
-    local VirtualUser = game:service'VirtualUser'
-    game:service'Players'.LocalPlayer.Idled:connect(function()
+    local VirtualUser = game:service("VirtualUser")
+    game:service("Players").LocalPlayer.Idled:Connect(function()
         VirtualUser:CaptureController()
         VirtualUser:ClickButton2(Vector2.new())
     end)
@@ -40,7 +40,7 @@ function AutoHealth()
             }
             local remoteEvent = ReplicatedStorage:WaitForChild("Lutero")
             remoteEvent:FireServer(unpack(args))
-            task.wait(0.1)
+            task.wait(0.0001)
         end
     end)
 end
@@ -51,10 +51,10 @@ function AutoStamina()
         while _G.AutoStamina do
             for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+                ReplicatedStorage.AddStaminaEvent:FireServer(251)
+                ReplicatedStorage.AddStaminaEvent:FireServer(252)
             end
-            task.wait(0.1)
+            task.wait(0.0001)
         end
     end)
 end
@@ -65,30 +65,13 @@ function AutoStamina2()
         while _G.AutoStamina2 do
             for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+                ReplicatedStorage.AddStaminaEvent:FireServer(251)
+                ReplicatedStorage.AddStaminaEvent:FireServer(252)
             end
-            task.wait(0.1)
+            task.wait(0.0001)
         end
     end)
 end
-
--- Função DumbellOP
-function DumbellOP()
-    task.spawn(function()      
-for i = 1, 1 do
-                while _G.AutoDumbell do
-                    local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
-                    if dumbell then
-                        local dumbellEvent = dumbell:FindFirstChild("Event")
-                        if dumbellEvent then
-                            dumbellEvent:FireServer()
-                        end
-                    end
-                    task.wait(0.00029888)
-                end
-            end)
-        end
 
 -- Função AutoStamina3
 function AutoStamina3()
@@ -96,22 +79,39 @@ function AutoStamina3()
         while _G.AutoStamina3 do
             for _ = 1, 5 do
                 ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
-                ReplicatedStorage.AddStaminaEvent:FireServer(250)
+                ReplicatedStorage.AddStaminaEvent:FireServer(251)
+                ReplicatedStorage.AddStaminaEvent:FireServer(252)
             end
-            task.wait(0.1)
+            task.wait(0.0001)
         end
     end)
 end
 
--- Aba 1
+-- Função DumbellOP
+function DumbellOP()
+    task.spawn(function()
+        while _G.AutoDumbell do
+            local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
+            if dumbell then
+                local dumbellEvent = dumbell:FindFirstChild("Event")
+                if dumbellEvent then
+                    dumbellEvent:FireServer()
+                    dumbellEvent:FireServer()
+                end
+            end
+            task.wait(0.00029888)
+        end
+    end)
+end
+
+-- Aba 1: FARME
 local FarmTab = Window:MakeTab({
     Name = "FARME",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-FarmTab:AddSection({ Name = "Pos aba" })
+FarmTab:AddSection({ Name = "Farm Automático" })
 
 FarmTab:AddToggle({
     Name = "Auto-Health",
@@ -131,14 +131,14 @@ FarmTab:AddToggle({
     end
 })
 
--- Aba 2
+-- Aba 2: STAMINA
 local AutoTab = Window:MakeTab({
     Name = "StaminaOP",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-AutoTab:AddSection({ Name = "Pos aba2" })
+AutoTab:AddSection({ Name = "Farm de Stamina" })
 
 AutoTab:AddToggle({
     Name = "Auto-Stamina",
@@ -167,18 +167,18 @@ AutoTab:AddToggle({
     end
 })
 
--- Aba de Funções Extras
+-- Aba 3: FUNÇÕES A+
 local InfiniteYieldTab = Window:MakeTab({
     Name = "FUNÇÕES A+",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-InfiniteYieldTab:AddSection({ Name = "FUNÇÕES A+" })
+InfiniteYieldTab:AddSection({ Name = "Extras" })
 
 InfiniteYieldTab:AddButton({
     Name = "InfiniteYield",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/hakaiofc/EdgeIYinfiniteyield/main/mastersource'))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hakaiofc/EdgeIYinfiniteyield/main/mastersource"))()
     end
 })
