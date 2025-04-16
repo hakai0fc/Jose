@@ -75,13 +75,8 @@ end
 
 -- Função DumbellOP
 function DumbellOP()
-    task.spawn(function()
-        local LP = game.Players.LocalPlayer
-        
-        _G.AutoDumbell = true -- Ativa o loop (você pode mudar isso para false quando quiser parar)
-        
-        for i = 1, 1 do
-            task.spawn(function()
+    task.spawn(function()      
+for i = 1, 1 do
                 while _G.AutoDumbell do
                     local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
                     if dumbell then
