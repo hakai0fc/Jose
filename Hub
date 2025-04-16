@@ -76,18 +76,24 @@ end
 -- Função DumbellOP
 function DumbellOP()
     task.spawn(function()
-        while _G.AutoDumbell do
-            local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
-            if dumbell then
-                local dumbellEvent = dumbell:FindFirstChild("Event")
-                if dumbellEvent then
-                    dumbellEvent:FireServer()
+        local LP = game.Players.LocalPlayer
+        
+        _G.AutoDumbell = true -- Ativa o loop (você pode mudar isso para false quando quiser parar)
+        
+        for i = 1, 1 do
+            task.spawn(function()
+                while _G.AutoDumbell do
+                    local dumbell = LP.Character and LP.Character:FindFirstChild("Dumbell")
+                    if dumbell then
+                        local dumbellEvent = dumbell:FindFirstChild("Event")
+                        if dumbellEvent then
+                            dumbellEvent:FireServer()
+                        end
+                    end
+                    task.wait(0.00029888)
                 end
-            end
-            task.wait(0.0005)
+            end)
         end
-    end)
-end
 
 -- Função AutoStamina3
 function AutoStamina3()
