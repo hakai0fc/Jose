@@ -28,6 +28,7 @@ _G.AutoDumbell = false
 _G.AutoStamina = false
 _G.AutoStamina2 = false
 _G.AutoStamina3 = false
+local AutoWin = false
 
 -- Função AutoHealth
 function AutoHealth()
@@ -104,6 +105,33 @@ function DumbellOP()
     end)
 end
 
+-- Função Wins👑
+function Wins()
+    task.spawn(function()
+        local Players = game:GetService("Players")
+        local player = Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:WaitForChild("Humanoid")
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        -- Coordenadas exatas (X, Y, Z) 
+        local pos1 = Vector3.new(570.743164, 2.94849896, -475.174713)
+        local pos2 = Vector3.new(759.081787, -46.350605, 523.868530)
+        local delayTime = 0.5
+
+        while true do
+            if not player or not player.Character or not player.Character:FindFirstChild("HumanoidRootPart") then
+                break 
+            end
+
+            hrp.CFrame = CFrame.new(pos1)
+            task.wait(delayTime)
+            hrp.CFrame = CFrame.new(pos2)
+            task.wait(delayTime)
+        end
+    end)
+end
+
 -- Aba 1: FARME
 local FarmTab = Window:MakeTab({
     Name = "FARME",
@@ -167,7 +195,45 @@ AutoTab:AddToggle({
     end
 })
 
--- Aba 3: FUNÇÕES A+
+-- Aba 3: Wins👑
+local WinsTab = Window:MakeTab ({
+    Name = "Wins👑",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+WinsTab:AddToggle({
+    Name = "Auto Wins👑",
+    Default = false,
+    Callback = function(state)
+        AutoWin = state
+
+        local Players = game:GetService("Players")
+        local player = Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local humanoid = char:WaitForChild("Humanoid")
+        local hrp = char:WaitForChild("HumanoidRootPart")
+
+        local pos1 = Vector3.new(570.743164, 2.94849896, -475.174713)
+        local pos2 = Vector3.new(759.081787, -46.350605, 523.868530)
+        local delayTime = 0.5
+
+        task.spawn(function()
+            while AutoWin do
+                if not player or not player.Character or not player.Character:FindFirstChild("HumanoidRootPart") then
+                    break
+                end
+                hrp.CFrame = CFrame.new(pos1)
+                task.wait(delayTime)
+                hrp.CFrame = CFrame.new(pos2)
+                task.wait(delayTime)
+            end
+        end)
+    end
+})
+
+
+-- Aba 4: FUNÇÕES A+
 local InfiniteYieldTab = Window:MakeTab({
     Name = "FUNÇÕES A+",
     Icon = "rbxassetid://4483345998",
